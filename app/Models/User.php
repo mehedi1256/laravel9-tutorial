@@ -46,7 +46,7 @@ class User extends Authenticatable
     public function post() {
         // return $this->hasOne('\App\Models\Post');
         // return $this->hasOne(Post::class, 'user_id', 'id');
-        return $this->hasOne(Post::class);
+        return $this->hasOne(Post::class)->withDefault(['key' => 'laravel']);
     }
 
     public function posts() {

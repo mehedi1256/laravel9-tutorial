@@ -146,14 +146,16 @@ Route::get('get/posts', [PostController::class, 'getPosts'])->name('get.posts');
 Route::get('test', function(){
     //oneToOne Relationship
 
-    /* $user = User::first();
-    return $user->post; */
-
-    $post = Post::first();
-    return $post->user;
+    $user = User::first();
+    // if($user->post){
+        return $user->post;
+    // }
+    
+    /* $post = Post::first();
+    return $post->user; */
 
     //oneToMany Relationship
-    
+
     /* $user = User::first();
     return $user->posts; */
 
