@@ -160,7 +160,8 @@ Route::get('test', function(){
     return $user->posts; */
 
     // $user = User::first();
-    return $user->postComment;
+    // return $user->postComment;
+    return $user->postComments;
 
 });
 
