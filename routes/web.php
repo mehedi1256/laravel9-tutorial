@@ -148,7 +148,7 @@ Route::get('test', function(){
 
     $user = User::first();
     // if($user->post){
-        return $user->post;
+        // return $user->post;
     // }
     
     /* $post = Post::first();
@@ -158,6 +158,9 @@ Route::get('test', function(){
 
     /* $user = User::first();
     return $user->posts; */
+
+    // $user = User::first();
+    return $user->postComment;
 
 });
 
