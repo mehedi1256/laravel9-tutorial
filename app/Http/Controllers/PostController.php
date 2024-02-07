@@ -122,6 +122,13 @@ class PostController extends Controller
         return to_route('posts.index');
     }
 
+    /**
+     * soft-delete
+     *
+     * @param Request $request
+     * @param [type] $id
+     * @return void
+     */
     public function softDelete(Request $request, $id) {
         $post = Post::onlyTrashed()->find($id);
         if(! $post) {
