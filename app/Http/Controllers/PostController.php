@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Support\Facades\Session;
-use App\Http\Requests\Post\CreateRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
 {
@@ -19,7 +20,6 @@ class PostController extends Controller
         // $post = Post::find(5, ['title','description']);
         // $posts = Post::simplePaginate(5);
         $posts = Post::withTrashed()->paginate(5);
-        // return $posts;
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -40,15 +40,8 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateRequest $request)
+    public function store(PostRequest $request)
     {
-        $request->validate([
-            'title' => 'required|min:3|max:50',
-            'description' => 'required|min:5|max:100',
-            'is_published' => 'required',
-            'is_active' => 'required'
-        ]);
-
         // Post::create($request->all());
         Post::create([
             'user_id' => 1,
@@ -75,11 +68,6 @@ class PostController extends Controller
         // return to_route('posts.create')->withInput();
         return to_route('posts.index');
 
-        /* Post::create([
-            'title' => 'laravel10',
-            'description' => 'it is awesome'
-        ]);
-        return 'inserted successfully'; */
     }
 
     /**
@@ -119,7 +107,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CreateRequest $request, $id)
+    public function update(PostRequest $request, $id)
     {
        $post = Post::find($id);
        if(! $post) {
