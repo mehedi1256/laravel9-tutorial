@@ -17,8 +17,6 @@ class PostController extends Controller
      */
     public function index()
     {
-        // $post = Post::find(5, ['title','description']);
-        // $posts = Post::simplePaginate(5);
         $posts = Post::withTrashed()->paginate(5);
         return view('posts.index', ['posts' => $posts]);
     }
@@ -42,7 +40,6 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        // Post::create($request->all());
         Post::create([
             'user_id' => 1,
             'title' => $request->title,
@@ -51,23 +48,8 @@ class PostController extends Controller
             'is_active' => $request->is_active
         ]);
 
-        /* $posts = new Post;
-        $posts->title = $request->title;
-        $posts->description = $request->description;
-        $posts->is_published = $request->is_published;
-        $posts->is_active = $request->is_active;
-        $posts->save(); */
-
         $request->session()->flash('alert-success','Post saved successfully');
-        // Session::flash('alert-success','Post created successfully');
-        // Session::put('alert-success','Post created successfully');
-        // dd('insert successfully');
-
-        // return redirect()->back()->withInput();
-
-        // return to_route('posts.create')->withInput();
         return to_route('posts.index');
-
     }
 
     /**
@@ -155,12 +137,6 @@ class PostController extends Controller
     }
 
     public function getPosts() {
-        // return DB::table('posts')->where('id', '1')->get();
-        // return DB::table('posts')->find(2);
-        // return DB::table('posts')->first();
-        // return DB::table('posts')->value('title');
-        // return DB::table('posts')->pluck('title', 'description');
-        // return DB::select('select * from posts where title = ?', ['Eu id tempora fuga']);
         return DB::select('insert into posts (title, description, is_published, is_active) values (?, ?, ?, ?)', ['laravel tutorial', 'Ii is most important tutorial and effective tutorial', 1, 1]);
     }
 }
