@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Session;
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\Post\CreateRequest;
 use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
@@ -41,14 +40,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(CreateRequest $request)
     {
-        /* $request->validate([
+        $request->validate([
             'title' => 'required|min:3|max:50',
             'description' => 'required|min:5|max:100',
             'is_published' => 'required',
             'is_active' => 'required'
-        ]); */
+        ]);
 
         // Post::create($request->all());
         Post::create([
@@ -120,7 +119,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, $id)
+    public function update(CreateRequest $request, $id)
     {
        $post = Post::find($id);
        if(! $post) {

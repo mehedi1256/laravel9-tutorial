@@ -28,7 +28,7 @@
             <h3 class="text-center">Posts</h3>
             <a href="{{ route('posts.create') }}" class="btn btn-primary mb-3">Create Post</a>
             @if (count($posts) > 0)
-                <table class="table table-bordered">
+                <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>

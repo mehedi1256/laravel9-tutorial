@@ -12,7 +12,7 @@
 <body>
     <div class="row mt-5">
         <div class="col-3"></div>
-        <div class="p-4 col-6 card bg-info-subtle">
+        <div class="text-success p-4 col-6 card bg-info-subtle">
             <h3 class="text-center">Post</h3>
             @if ($post)
             <span><b>Title:</b>{{ $post->title }}</span> <br/>
